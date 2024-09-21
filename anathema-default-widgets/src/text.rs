@@ -71,6 +71,12 @@ pub struct Text {
     strings: Strings,
 }
 
+impl Text {
+    pub fn get_line_count(&self) -> usize {
+        self.strings.line_count()
+    }
+}
+
 impl Widget for Text {
     fn layout<'bp>(
         &mut self,
