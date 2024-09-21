@@ -2,7 +2,7 @@ use std::ops::ControlFlow;
 
 use anathema_geometry::{LocalPos, Size};
 use anathema_state::CommonVal;
-use anathema_widgets::layout::text::{ProcessResult, Segment, Strings};
+use anathema_widgets::layout::text::{Line, ProcessResult, Segment, Strings};
 use anathema_widgets::layout::{Constraints, LayoutCtx, PositionCtx};
 use anathema_widgets::paint::{PaintCtx, SizePos};
 use anathema_widgets::{AttributeStorage, LayoutChildren, PaintChildren, PositionChildren, Widget, WidgetId};
@@ -72,6 +72,10 @@ pub struct Text {
 }
 
 impl Text {
+    pub fn get_lines(&self) -> impl Iterator<Item = Line<impl Iterator<Item = Segment<'_>>>> {
+        self.strings.lines()
+    }
+
     pub fn get_line_count(&self) -> usize {
         self.strings.line_count()
     }
